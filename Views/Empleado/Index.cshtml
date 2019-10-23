@@ -1,0 +1,43 @@
+@model IEnumerable<Nomina.Models.Empleado>
+
+<div class="container">
+
+<div class="row">
+    <div class="col-3">
+        <img src="https://i.ytimg.com/vi/8ktYyme_sUw/maxresdefault.jpg" height="100" width="150" class="text-center"> 
+    </div>
+    <div class="col-9">
+        <h1 class="display-4">Empleados</h1>
+    </div>
+</div>
+<br />
+<a role="button" asp-controller="Empleado" asp-action="Agregar" class="btn btn-outline-dark">Agregar</a>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Legajo</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>CUIL</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var empleado in Model)
+        {
+            <tr>
+              <td>@empleado.id </td>
+              <td>@empleado.dni </td>
+              <td>@empleado.nombre </td>
+              <td>@empleado.CUIL </td>
+              <td>
+                  <a asp-controller="Empleado" asp-action="Editar" asp-route-id="@empleado.id" class="btn btn-link">Editar</a> |
+                  <a asp-controller="Empleado" asp-action="Eliminar" asp-route-id="@empleado.id" class="btn btn-link">Eliminar</a>
+              </td>
+            </tr>
+        }  
+    </tbody>
+</table>
+</div>

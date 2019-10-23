@@ -1,0 +1,26 @@
+@model Nomina.Models.Empleado
+
+<h1 class="display-4 text-center mt-5">Editar empleado</h1>
+
+<form asp-controller="Empleado" asp-action="Editar" method="post">
+    <div class="form-row">
+        <div class="col">
+        <input asp-for="id" type="text" value="@Model.id" class="form-control" disabled/>
+        </div>
+        <div class="col">
+        <input asp-for="dni" type="text" value="@Model.dni" class="form-control"/>
+        </div>
+    </div>
+    <br />
+       <div class="form-row"> 
+           <div class="col">
+        <input asp-for="nombre" type="text" value="@Model.nombre" class="form-control"/>
+        </div>
+        <div class="col">
+        <input asp-for="CUIL" type="text" value="@Model.CUIL" class="form-control"/>
+    </div>
+    </div>
+    <br />
+        <input type="submit"class="btn btn-outline-dark" value="Guardar"/>
+        <a asp-controller="Empleado" asp-action="Index" role="button" class="btn btn-outline-info">Empleados</a>
+</form>
