@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ejemplomvc.Models;
 using LiteDB;
 using Microsoft.AspNetCore.Mvc;
 using Nomina.Models;
@@ -8,16 +9,16 @@ namespace Nomina.Controllers
 {
     public class EmpleadoController : Controller
     {
-        LiteDatabase db;
+        private readonly LiteDbContext db;
 
-        public EmpleadoController()
+        public EmpleadoController(LiteDbContext db)
         {
-            db = new LiteDatabase(@"nomina.db");            
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            var empleados = db.GetCollection<Empleado>("nomina");
+            var empleados = db.Context.GetCollection<Empleado>("nomina");
 
             return View("Index", empleados.FindAll());
         }
@@ -31,7 +32,7 @@ namespace Nomina.Controllers
         [HttpPost]
         public IActionResult Agregar(Empleado empleado)
         {            
-            var empleados = db.GetCollection<Empleado>("nomina");
+            var empleados = db.Context.GetCollection<Empleado>("nomina");
 
             empleados.Insert(empleado);
 
@@ -41,7 +42,7 @@ namespace Nomina.Controllers
         [HttpGet]
         public IActionResult Editar(int id)
         {
-            var empleados = db.GetCollection<Empleado>("nomina").FindAll();
+            var empleados = db.Context.GetCollection<Empleado>("nomina").FindAll();
 
             var empleado = empleados.FirstOrDefault(x => x.id == id);
 
@@ -51,7 +52,7 @@ namespace Nomina.Controllers
         [HttpPost]
         public IActionResult Editar(Empleado empleado)
         {            
-            var empleados = db.GetCollection<Empleado>("nomina");
+            var empleados = db.Context.GetCollection<Empleado>("nomina");
 
             empleados.Update(empleado);
 
@@ -62,11 +63,10 @@ namespace Nomina.Controllers
 
         public IActionResult Eliminar (int id)
         {
-            var empleados = db.GetCollection<Empleado>("nomina");
+            var empleados = db.Context.GetCollection<Empleado>("nomina");
 
             empleados.Delete(x => x.id == id);
 
-            //return View("Index", empleados.FindAll());
             return RedirectToAction("Index", empleados.FindAll());
         }
     }

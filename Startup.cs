@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ejemplomvc.Models;
+using LiteDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,10 @@ namespace Nomina
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //https://codehaks.github.io/2018/10/01/injecting-litedb-as-a-service-in-asp.net-core.html/
+            var databasePath = Configuration.GetSection("LiteDb").GetSection("nomina_db").Value;
+            services.AddTransient<LiteDbContext, LiteDbContext>();
+            services.Configure<LiteDbConfig>(options => options.DatabasePath = databasePath);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
