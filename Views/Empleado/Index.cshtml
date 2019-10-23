@@ -14,9 +14,11 @@
 <a role="button" asp-controller="Empleado" asp-action="Agregar" class="btn btn-outline-dark">Agregar</a>
 <br />
 <br />
+<p>Cantidad empleados: <b>@ViewBag.CantidadEmpleados</b></p>
 <table class="table table-bordered table-hover table-sm">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Legajo</th>
             <th>DNI</th>
             <th>Nombre</th>
@@ -29,6 +31,7 @@
         {
             <tr>
               <td>@empleado.id </td>
+              <td>@empleado.legajo </td>
               <td>@empleado.dni </td>
               <td>@empleado.nombre </td>
               <td>@empleado.CUIL </td>

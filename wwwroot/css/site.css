@@ -54,3 +54,12 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*centrado de contenido*/
+.table th {
+  text-align: center;   
+}
+
+.table td {
+  text-align: center;   
+}

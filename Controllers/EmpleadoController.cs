@@ -20,6 +20,8 @@ namespace Nomina.Controllers
         {
             var empleados = db.Context.GetCollection<Empleado>("nomina");
 
+            ViewBag.CantidadEmpleados = empleados.Count();
+
             return View("Index", empleados.FindAll());
         }
 
@@ -36,7 +38,7 @@ namespace Nomina.Controllers
 
             empleados.Insert(empleado);
 
-            return View("Index", empleados.FindAll());
+            return RedirectToAction("Index", empleados.FindAll());
         }
 
         [HttpGet]
@@ -56,10 +58,8 @@ namespace Nomina.Controllers
 
             empleados.Update(empleado);
 
-            return View("Index", empleados.FindAll());
+            return RedirectToAction("Index", empleados.FindAll());
         }
-
-
 
         public IActionResult Eliminar (int id)
         {
