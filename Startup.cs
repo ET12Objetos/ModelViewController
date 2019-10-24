@@ -34,9 +34,15 @@ namespace Nomina
             });
 
             //https://codehaks.github.io/2018/10/01/injecting-litedb-as-a-service-in-asp.net-core.html/
+            
+            //Se lee ubicacion del archivo de la base de datos (nomina.db) desde el archivo appsetting.json
             var databasePath = Configuration.GetSection("LiteDb").GetSection("nomina_db").Value;
-            services.AddTransient<LiteDbContext, LiteDbContext>();
+
+            //Configuro el contexto de la base de datos con la ubicacion del archivo (nomina.db)
             services.Configure<LiteDbConfig>(options => options.DatabasePath = databasePath);
+
+            //Agrego a la lista de servicios de la aplicacion el "contexto" de la base de datos
+            services.AddTransient<LiteDbContext, LiteDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
