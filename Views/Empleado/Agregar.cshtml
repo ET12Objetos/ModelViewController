@@ -1,26 +1,29 @@
 @model Nomina.Models.Empleado
 
-<h1 class="display-4 text-center mt-5">Nuevo empleado</h1>
+<h1 class="display-4 mt-5">Nuevo empleado</h1>
 
 <form asp-controller="Empleado" asp-action="Agregar" method="post">
     <div class="form-row">
-        <div class="col">
-        <input asp-for="legajo" type="text" placeholder="Legajo" class="form-control"/>
+        <div class="form-group col-6">
+            <label for="legajo">Legajo</label>
+            <input asp-for="legajo" type="text" placeholder="Legajo" class="form-control"/>
         </div>
-        <div class="col">
-        <input asp-for="dni" type="text" placeholder="DNI" class="form-control"/>
+        <div class="form-group col-6">
+            <label for="dni">DNI</label>
+            <input asp-for="dni" type="text" placeholder="DNI" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-row"> 
+        <div class="form-group col-6">
+            <label for="nombre">Nombre</label>
+            <input asp-for="nombre" type="text" placeholder="Nombre" class="form-control"/>
+        </div>
+        <div class="form-group col-6">
+            <label for="CUIL">CUIL</label>
+            <input asp-for="CUIL" type="text" placeholder="CUIL" class="form-control"/>
         </div>
     </div>
     <br />
-       <div class="form-row"> 
-           <div class="col">
-        <input asp-for="nombre" type="text" placeholder="Nombre" class="form-control"/>
-        </div>
-        <div class="col">
-        <input asp-for="CUIL" type="text" placeholder="CUIL" class="form-control"/>
-    </div>
-    </div>
-    <br />
-        <input type="submit"class="btn btn-outline-dark" value="Guardar"/>
-        <a asp-controller="Empleado" asp-action="Index" role="button" class="btn btn-outline-info">Empleados</a>
+    <input type="submit"class="btn btn-outline-primary" value="Guardar"/>
+    <a asp-controller="Empleado" asp-action="Index" role="button" class="btn btn-outline-secondary">Volver</a>
 </form>

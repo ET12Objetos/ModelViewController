@@ -1,7 +1,5 @@
 @model IEnumerable<Nomina.Models.Empleado>
 
-<div class="container">
-
 <div class="row">
     <div class="col-10">
         <h1 class="display-4">Empleados</h1>
@@ -11,7 +9,7 @@
     </div>
 </div>
 <br />
-<a role="button" asp-controller="Empleado" asp-action="Agregar" class="btn btn-outline-dark">Agregar</a>
+<a role="button" asp-controller="Empleado" asp-action="Agregar" class="btn btn-outline-primary">Agregar</a>
 <br />
 <br />
 <p>Cantidad empleados: <b>@ViewBag.CantidadEmpleados</b></p>
@@ -43,4 +41,3 @@
         }  
     </tbody>
 </table>
-</div>
